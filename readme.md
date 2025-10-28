@@ -554,9 +554,9 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 
 **David Aniago**
 
-- GitHub: [@davidaniago](https://github.com/davidaniago)
-- LinkedIn: [David Aniago](https://linkedin.com/in/davidaniago)
-- Email: david@example.com
+- GitHub: [@KingDayveed357](https://github.com/KingDayveed357)
+- LinkedIn: [David Aniago](https://www.linkedin.com/in/aniago-david-225746323)
+- Email: davidaniago@gmail.com
 
 ---
 

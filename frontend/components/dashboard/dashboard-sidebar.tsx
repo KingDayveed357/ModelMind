@@ -310,7 +310,7 @@ export function DashboardSidebar({
             <Button
               disabled={isLoggingOut}
               onClick={handleLogout}
-              className="w-full sm:w-auto bg-yellow-600 hover:bg-yellow-700"
+              className="w-full sm:w-auto bg-primary "
             >
               {isLoggingOut ? "Logging out..." : "Logout"}
             </Button>

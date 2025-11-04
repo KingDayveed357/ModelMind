@@ -7,19 +7,6 @@ import { Button } from "@/components/ui/button"
 
 export function ThemeToggle() {
   const { theme, setTheme } = useTheme()
-  const [mounted, setMounted] = React.useState(false)
-
-  React.useEffect(() => {
-    setMounted(true)
-  }, [])
-
-  if (!mounted) {
-    return (
-      <Button variant="ghost" size="icon">
-        <Sun className="w-5 h-5" />
-      </Button>
-    )
-  }
 
   return (
     <Button

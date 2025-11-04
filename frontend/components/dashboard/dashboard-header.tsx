@@ -56,9 +56,9 @@ export function DashboardHeader({ onMenuClick }: DashboardHeaderProps) {
         <div className="flex items-center gap-2">
           <ThemeToggle />
           
-          <DropdownMenu>
+             <DropdownMenu>
             <DropdownMenuTrigger asChild>
-              <Button variant="ghost" size="icon" className="relative">
+              <Button variant="ghost" size="icon" className="relative" aria-label="Notifications">
                 <Bell className="w-5 h-5" />
                 {unreadCount > 0 && (
                   <span className="absolute top-1.5 right-1.5 w-2 h-2 bg-primary rounded-full animate-pulse" />
@@ -68,12 +68,19 @@ export function DashboardHeader({ onMenuClick }: DashboardHeaderProps) {
             <DropdownMenuContent align="end" className="w-80">
               <DropdownMenuLabel className="flex items-center justify-between">
                 <span>Notifications</span>
-                {unreadCount > 0 && (
-                  <Badge variant="secondary" className="ml-2">
-                    {unreadCount} new
-                  </Badge>
-                )}
+                {/* <Badge variant="secondary" className="ml-2">
+                  {unreadCount} new
+                </Badge> */}
               </DropdownMenuLabel>
+              <DropdownMenuSeparator />
+              <div className="p-4 text-sm">
+                <p className="font-medium">Under construction</p>
+                <p className="text-muted-foreground mt-1">
+                  The notifications center is coming soon. You’ll see training updates, dataset events, and prediction results here.
+                </p>
+              </div>
+
+              {/* Original notifications list preserved for future enablement
               <DropdownMenuSeparator />
               <div className="max-h-[400px] overflow-y-auto">
                 {notifications.map((notification) => (
@@ -93,6 +100,7 @@ export function DashboardHeader({ onMenuClick }: DashboardHeaderProps) {
               <DropdownMenuItem className="justify-center text-sm text-primary cursor-pointer">
                 Mark all as read
               </DropdownMenuItem>
+              */}
             </DropdownMenuContent>
           </DropdownMenu>
         </div>

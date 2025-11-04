@@ -37,12 +37,12 @@ function MetricCard({ title, value, subtitle, icon, iconBgColor }: MetricCardPro
 
 export function MetricsGrid({ summary, recentModels, totalDatasets }: MetricsGridProps) {
   const calculateAvgPerformance = () => {
-    if (!summary) return { value: "N/A", label: "Performance" }
+    if (!summary) return { value: "None", label: "Performance" }
     
     const hasRegression = (summary.regression_count || 0) > 0
     const hasClassification = (summary.classification_count || 0) > 0
     
-    let value = "N/A"
+    let value = "None"
     let label = "Performance"
     
     if (hasRegression && !hasClassification && summary.avg_r2 !== null && summary.avg_r2 !== undefined) {
@@ -87,7 +87,7 @@ export function MetricsGrid({ summary, recentModels, totalDatasets }: MetricsGri
   }
 
   const calculateAvgTrainingTime = (): string => {
-    if (!recentModels || recentModels.length === 0) return "N/A"
+    if (!recentModels || recentModels.length === 0) return "None"
     
     const totalSeconds = recentModels.reduce((sum, m) => {
       const seconds = parseTrainingTime(m.training_time)
@@ -111,18 +111,27 @@ export function MetricsGrid({ summary, recentModels, totalDatasets }: MetricsGri
         iconBgColor="bg-primary/10"
       />
       
-      <MetricCard
+     <MetricCard
         title={avgPerf.label}
         value={avgPerf.value}
-        subtitle="Across all models"
+        subtitle={
+          avgPerf.value === "None" 
+            ? "Train models to see performance" 
+            : "Across all models"
+        }
         icon={<TrendingUp className="w-5 h-5 sm:w-6 sm:h-6 text-accent" />}
         iconBgColor="bg-accent/10"
       />
       
+      
       <MetricCard
         title="Avg Training Time"
         value={calculateAvgTrainingTime()}
-        subtitle="Per model"
+        subtitle={
+          calculateAvgTrainingTime() === "None" 
+            ? "No training data available" 
+            : "Per model"
+        }
         icon={<Clock className="w-5 h-5 sm:w-6 sm:h-6 text-chart-3" />}
         iconBgColor="bg-chart-3/10"
       />

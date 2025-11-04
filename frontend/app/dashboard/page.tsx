@@ -9,6 +9,7 @@ import { QuickActions } from "@/components/overview/quick-actions"
 import { ErrorState } from "@/components/overview/error-state"
 import { DashboardSkeleton } from "@/components/overview/dashboard-skeleton"
 import { modelService } from "@/lib/services/model-service"
+import { userDatasets } from '@/lib/user-dataset'
 import type { Model, ModelSummary } from "@/lib/services/model-service"
 
 export default function DashboardPage() {
@@ -21,6 +22,8 @@ export default function DashboardPage() {
   useEffect(() => {
     loadDashboardData()
   }, [])
+
+
 
   const loadDashboardData = async () => {
     try {
@@ -38,9 +41,12 @@ export default function DashboardPage() {
 
       setSummary(summaryData)
       setRecentModels(models.slice(0, 3))
+      
 
-      const uniqueDatasets = new Set(models.map(m => m.dataset_id).filter(Boolean))
-      setTotalDatasets(uniqueDatasets.size)
+      const count = await userDatasets.getDatasetsCount()
+      setTotalDatasets(count)
+      // const uniqueDatasets = new Set(models.map(m => m.dataset_id).filter(Boolean))
+      // setTotalDatasets(uniqueDatasets.size)
     } catch (err) {
       console.error("Dashboard error:", err)
       setError((err as Error).message || "Failed to load dashboard data")

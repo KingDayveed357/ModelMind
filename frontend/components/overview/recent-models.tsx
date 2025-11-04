@@ -104,14 +104,17 @@ export function RecentModels({ models, loading }: RecentModelsProps) {
               Your latest machine learning models
             </CardDescription>
           </div>
-          <Button 
-            variant="outline" 
-            size="sm" 
-            onClick={() => router.push('/dashboard/history')}
-            className="bg-transparent w-full sm:w-auto"
-          >
-            View All
-          </Button>
+          {/* Only show View All button when there are models */}
+          {models.length > 0 && (
+            <Button 
+              variant="outline" 
+              size="sm" 
+              onClick={() => router.push('/dashboard/history')}
+              className="bg-transparent w-full sm:w-auto"
+            >
+              View All
+            </Button>
+          )}
         </div>
       </CardHeader>
       <CardContent>

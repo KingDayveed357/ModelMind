@@ -101,28 +101,6 @@ export function DashboardSidebar({
       )}
       aria-label="RegressLab Home"
     >
-      {/* <div className="w-8 h-8 rounded-lg bg-primary flex items-center justify-center">
-        <svg
-          width="20"
-          height="20"
-          viewBox="0 0 20 20"
-          fill="none"
-          xmlns="http://www.w3.org/2000/svg"
-          className="text-primary-foreground"
-        >
-          <path
-            d="M2 18L8 12L12 16L18 2"
-            stroke="currentColor"
-            strokeWidth="2"
-            strokeLinecap="round"
-            strokeLinejoin="round"
-          />
-          <circle cx="8" cy="12" r="1.5" fill="currentColor" />
-          <circle cx="12" cy="16" r="1.5" fill="currentColor" />
-          <circle cx="18" cy="2" r="1.5" fill="currentColor" />
-        </svg>
-      </div> */}
-      
       {!collapsed && <span className="font-semibold"><ModelMindLogo /></span>}
     </Link>
   )
@@ -164,7 +142,7 @@ export function DashboardSidebar({
           <div className="flex items-center gap-3 px-3 py-2">
             <Skeleton className="w-8 h-8 rounded-full" />
             {!collapsed && (
-              <div className="flex-1 space-y-1">
+              <div className="flex-1 space-y-1 min-w-0">
                 <Skeleton className="h-4 w-20" />
                 <Skeleton className="h-3 w-24" />
               </div>
@@ -191,25 +169,29 @@ export function DashboardSidebar({
                 collapsed ? "justify-center" : "justify-between"
               )}
             >
-              <div className="flex items-center gap-3">
-                <div className="w-8 h-8 rounded-full bg-primary/10 flex items-center justify-center">
+              <div className="flex items-center gap-3 min-w-0 flex-1">
+                <div className="w-8 h-8 rounded-full bg-primary/10 flex items-center justify-center flex-shrink-0">
                   <span className="text-sm font-medium text-primary">{initials}</span>
                 </div>
                 {!collapsed && (
-                  <div className="flex-1 text-left">
-                    <p className="text-sm font-medium truncate">{name}</p>
-                    <p className="text-xs text-muted-foreground truncate">{email}</p>
+                  <div className="flex-1 text-left min-w-0">
+                    <p className="text-sm font-medium truncate" title={name}>
+                      {name}
+                    </p>
+                    <p className="text-xs text-muted-foreground truncate" title={email}>
+                      {email}
+                    </p>
                   </div>
                 )}
               </div>
-              {!collapsed && <ChevronDown className="w-4 h-4 text-muted-foreground" />}
+              {!collapsed && <ChevronDown className="w-4 h-4 text-muted-foreground flex-shrink-0" />}
             </Button>
           </DropdownMenuTrigger>
 
           <DropdownMenuContent align={collapsed ? "start" : "end"} className="w-56">
             <DropdownMenuLabel>
-              <p className="text-sm font-medium">{name}</p>
-              <p className="text-xs text-muted-foreground">{email}</p>
+              <p className="text-sm font-medium truncate" title={name}>{name}</p>
+              <p className="text-xs text-muted-foreground truncate" title={email}>{email}</p>
             </DropdownMenuLabel>
             <DropdownMenuSeparator />
             <DropdownMenuItem asChild>

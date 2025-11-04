@@ -30,7 +30,7 @@ export function AppearanceTab() {
           />
         </div>
 
-        <Separator />
+        {/* <Separator />
 
         <div className="space-y-2">
           <Label className="text-sm">Chart Color Scheme</Label>
@@ -45,7 +45,7 @@ export function AppearanceTab() {
               </Button>
             ))}
           </div>
-        </div>
+        </div> */}
       </CardContent>
     </Card>
   )

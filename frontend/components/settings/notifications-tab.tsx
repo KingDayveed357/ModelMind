@@ -58,14 +58,21 @@ export function NotificationsTab() {
 
   return (
     <Card className="matte-panel">
-      <CardHeader>
-        <CardTitle className="text-lg sm:text-xl">Notification Preferences</CardTitle>
-        <CardDescription className="text-xs sm:text-sm">
-          Choose what updates you want to receive
-        </CardDescription>
-      </CardHeader>
-      <CardContent className="space-y-6">
-        {success && (
+    <CardHeader>
+      <CardTitle className="text-lg sm:text-xl">Notification Preferences</CardTitle>
+      <CardDescription className="text-xs sm:text-sm">
+        Choose what updates you want to receive
+      </CardDescription>
+    </CardHeader>
+    <CardContent className="space-y-6">
+      {/* Under Construction Notice */}
+      <Alert className="bg-amber-50 dark:bg-amber-950 border-amber-200 dark:border-amber-800">
+        <AlertDescription className="text-amber-700 dark:text-amber-300">
+          Notifications are under construction and will be available soon. Settings shown below are previews.
+        </AlertDescription>
+      </Alert>
+
+   {success && (
           <Alert className="bg-green-50 dark:bg-green-950 border-green-200 dark:border-green-800">
             <CheckCircle2 className="h-4 w-4 text-green-600 dark:text-green-400" />
             <AlertDescription className="text-green-600 dark:text-green-400">
@@ -74,7 +81,7 @@ export function NotificationsTab() {
           </Alert>
         )}
 
-        <div className="flex items-start sm:items-center justify-between gap-4">
+<div className="flex items-start sm:items-center justify-between gap-4">
           <div className="space-y-0.5 flex-1">
             <Label htmlFor="email-notifications" className="text-sm">Email Notifications</Label>
             <p className="text-xs sm:text-sm text-muted-foreground">
@@ -87,6 +94,7 @@ export function NotificationsTab() {
             onCheckedChange={(checked) =>
               setSettings({ ...settings, emailNotifications: checked })
             }
+            disabled
           />
         </div>
 
@@ -105,20 +113,14 @@ export function NotificationsTab() {
             onCheckedChange={(checked) =>
               setSettings({ ...settings, trainingAlerts: checked })
             }
+            disabled
           />
         </div>
 
         <Separator />
 
-        <Button onClick={handleSave} className="transition-smooth w-full sm:w-auto" disabled={loading}>
-          {loading ? (
-            <>
-              <Loader2 className="mr-2 h-4 w-4 animate-spin" />
-              Saving...
-            </>
-          ) : (
-            "Save Preferences"
-          )}
+        <Button onClick={handleSave} className="transition-smooth w-full sm:w-auto" disabled>
+          Coming soon
         </Button>
       </CardContent>
     </Card>

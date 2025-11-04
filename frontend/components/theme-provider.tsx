@@ -25,15 +25,20 @@ const ThemeProviderContext = React.createContext<ThemeProviderState>(initialStat
 export function ThemeProvider({
   children,
   defaultTheme = "system",
-  storageKey = "regresslab-theme",
+  storageKey = "modelmind-theme",
   ...props
 }: ThemeProviderProps) {
-  const [theme, setTheme] = React.useState<Theme>(() => {
-    if (typeof window !== "undefined") {
-      return (localStorage.getItem(storageKey) as Theme) || defaultTheme
+  const [theme, setTheme] = React.useState<Theme>(defaultTheme)
+  const [mounted, setMounted] = React.useState(false)
+
+  React.useEffect(() => {
+    // Only run on client side
+    const storedTheme = localStorage.getItem(storageKey) as Theme
+    if (storedTheme) {
+      setTheme(storedTheme)
     }
-    return defaultTheme
-  })
+    setMounted(true)
+  }, [storageKey])
 
   React.useEffect(() => {
     const root = window.document.documentElement
@@ -50,7 +55,7 @@ export function ThemeProvider({
   }, [theme])
 
   const value = {
-    theme,
+    theme: mounted ? theme : defaultTheme,
     setTheme: (theme: Theme) => {
       localStorage.setItem(storageKey, theme)
       setTheme(theme)

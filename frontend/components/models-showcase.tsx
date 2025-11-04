@@ -162,7 +162,7 @@ export function ModelsShowcase() {
         {/* CTA */}
         <div className="flex justify-center mt-12 md:mt-16">
           <Link
-            href="/dashboard/visualizations"
+            href="/dashboard"
             className="inline-flex items-center gap-2 px-6 py-3 rounded-lg matte-panel-elevated hover:border-accent hover:neon-accent transition-all duration-300 text-sm font-medium"
           >
             Compare Models in Dashboard

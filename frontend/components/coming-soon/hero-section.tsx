@@ -63,7 +63,7 @@ export function ComingSoonHero() {
     visible: {
       opacity: 1,
       y: 0,
-      transition: { duration: 0.8, ease: [0.23, 1, 0.32, 1] },
+      transition: { duration: 0.8, ease: [0.22, 1, 0.36, 1] as [number, number, number, number]},
     },
   }
 
@@ -80,7 +80,7 @@ export function ComingSoonHero() {
           transition={{
             duration: 8,
             repeat: Number.POSITIVE_INFINITY,
-            ease: "easeInOut",
+            ease: [0.42, 0, 0.58, 1],
           }}
         />
         <motion.div
@@ -92,7 +92,7 @@ export function ComingSoonHero() {
           transition={{
             duration: 10,
             repeat: Number.POSITIVE_INFINITY,
-            ease: "easeInOut",
+            ease: [0.42, 0, 0.58, 1],
           }}
         />
       </div>

@@ -209,7 +209,7 @@ export default function PredictionsPage() {
       const row = [pred]
       if (batchPrediction.probabilities) {
         const maxProb = Math.max(...batchPrediction.probabilities[idx])
-        row.push(maxProb.toFixed(4))
+        row.push(Number(maxProb.toFixed(4)))
       }
       return row.join(",")
     })
@@ -327,7 +327,7 @@ export default function PredictionsPage() {
                                   id={col}
                                   type="text"
                                   placeholder={`Enter ${col}`}
-                                  value={inputs[col] || ""}
+                                  value={inputs[col] !== undefined && inputs[col] !== null ? String(inputs[col]) : ""}
                                   onChange={e => handleInputChange(col, e.target.value)}
                                 />
                               </div>

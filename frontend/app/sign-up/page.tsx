@@ -7,7 +7,6 @@ import { useRouter } from "next/navigation"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
-import { Checkbox } from "@/components/ui/checkbox"
 import { Alert, AlertDescription } from "@/components/ui/alert"
 import Link from "next/link"
 import { ArrowLeft, Loader2 } from "lucide-react"
@@ -17,14 +16,20 @@ export default function SignUpPage() {
   const [name, setName] = useState("")
   const [email, setEmail] = useState("")
   const [password, setPassword] = useState("")
-  const [agreedToTerms, setAgreedToTerms] = useState(false)
   const [loading, setLoading] = useState(false)
   const [error, setError] = useState<string | null>(null)
   const [success, setSuccess] = useState(false)
   const router = useRouter()
 
+  // Check if all required fields are filled
+  const isFormValid = name.trim() !== "" && email.trim() !== "" && password.trim() !== ""
+
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
+    
+    // Double check form validity before submission
+    if (!isFormValid) return
+    
     setError(null)
     setLoading(true)
 
@@ -168,26 +173,23 @@ export default function SignUpPage() {
                   </div>
                 </div>
 
-                <div className="flex items-start gap-2">
-                  <Checkbox
-                    id="terms"
-                    checked={agreedToTerms}
-                    onCheckedChange={(checked) => setAgreedToTerms(checked as boolean)}
-                    disabled={loading}
-                  />
-                  <label htmlFor="terms" className="text-sm text-muted-foreground leading-relaxed cursor-pointer">
-                    I agree to the{" "}
-                    <Link href="/terms" className="text-primary hover:underline">
-                      Terms of Service
-                    </Link>{" "}
-                    and{" "}
-                    <Link href="/privacy" className="text-primary hover:underline">
-                      Privacy Policy
-                    </Link>
-                  </label>
+                {/* Terms notice - informational only */}
+                <div className="text-xs text-muted-foreground text-center">
+                  By creating an account, you agree to our{" "}
+                  <Link href="/terms" className="text-primary hover:underline">
+                    Terms of Service
+                  </Link>{" "}
+                  and{" "}
+                  <Link href="/privacy" className="text-primary hover:underline">
+                    Privacy Policy
+                  </Link>
                 </div>
 
-                <Button type="submit" className="w-full" disabled={!agreedToTerms || loading}>
+                <Button 
+                  type="submit" 
+                  className="w-full" 
+                  disabled={!isFormValid || loading}
+                >
                   {loading ? (
                     <>
                       <Loader2 className="mr-2 h-4 w-4 animate-spin" />

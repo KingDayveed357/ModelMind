@@ -1,6 +1,7 @@
 "use client"
 
 import Link from "next/link"
+import { ModelMindLogo } from "@/components/logo"
 
 export function Footer() {
   return (
@@ -10,7 +11,7 @@ export function Footer() {
           {/* Brand */}
           <div className="col-span-1 sm:col-span-2 lg:col-span-1">
             <div className="flex items-center gap-2 mb-4">
-              <div className="w-8 h-8 rounded-lg bg-primary flex items-center justify-center">
+              {/* <div className="w-8 h-8 rounded-lg bg-primary flex items-center justify-center">
                 <svg
                   width="20"
                   height="20"
@@ -30,10 +31,13 @@ export function Footer() {
                   <circle cx="12" cy="16" r="1.5" fill="currentColor" />
                   <circle cx="18" cy="2" r="1.5" fill="currentColor" />
                 </svg>
-              </div>
-              <span className="text-lg font-semibold">RegressLab</span>
+              </div> */}
+                 <ModelMindLogo />
+              {/* <span className="text-lg font-semibold">ModelMind</span> */}
             </div>
-            <p className="text-sm text-muted-foreground mb-4">AI-powered regression analysis for data scientists.</p>
+            <p className="text-sm text-muted-foreground mb-4">
+              ML model training and deployment for supervised learning.
+            </p>
             <div className="flex items-center gap-4">
               <Link href="#" className="text-muted-foreground hover:text-foreground transition-colors">
                 <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
@@ -76,13 +80,13 @@ export function Footer() {
                 </Link>
               </li>
               <li>
-                <Link href="#pricing" className="hover:text-foreground transition-colors">
-                  Pricing
+                <Link href="/docs" className="hover:text-foreground transition-colors">
+                  Docs
                 </Link>
               </li>
               <li>
-                <Link href="#changelog" className="hover:text-foreground transition-colors">
-                  Changelog
+                <Link href="/sign-up" className="hover:text-foreground transition-colors">
+                  Get Started
                 </Link>
               </li>
             </ul>
@@ -93,23 +97,23 @@ export function Footer() {
             <h3 className="font-semibold text-sm mb-4">Resources</h3>
             <ul className="space-y-3 text-sm text-muted-foreground">
               <li>
-                <Link href="#docs" className="hover:text-foreground transition-colors">
-                  Documentation
+                <Link href="/docs#getting-started" className="hover:text-foreground transition-colors">
+                  Getting Started
                 </Link>
               </li>
               <li>
-                <Link href="#api" className="hover:text-foreground transition-colors">
-                  API Reference
+                <Link href="/docs#model-catalog" className="hover:text-foreground transition-colors">
+                  Model Catalog
                 </Link>
               </li>
               <li>
-                <Link href="#guides" className="hover:text-foreground transition-colors">
-                  Guides
+                <Link href="/docs#evaluation-metrics" className="hover:text-foreground transition-colors">
+                  Evaluation Metrics
                 </Link>
               </li>
               <li>
-                <Link href="#support" className="hover:text-foreground transition-colors">
-                  Support
+                <Link href="/docs#troubleshooting" className="hover:text-foreground transition-colors">
+                  Troubleshooting
                 </Link>
               </li>
             </ul>
@@ -145,7 +149,7 @@ export function Footer() {
 
         {/* Bottom */}
         <div className="pt-8 border-t border-border flex flex-col sm:flex-row justify-between items-center gap-4 text-center sm:text-left">
-          <p className="text-sm text-muted-foreground">© 2025 RegressLab. All rights reserved.</p>
+          <p className="text-sm text-muted-foreground">© 2025 ModelMind. All rights reserved.</p>
           <div className="flex items-center gap-4 sm:gap-6 text-sm text-muted-foreground">
             <Link href="#privacy" className="hover:text-foreground transition-colors">
               Privacy

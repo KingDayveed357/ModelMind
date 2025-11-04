@@ -5,6 +5,7 @@ import Link from "next/link"
 import { ThemeToggle } from "@/components/theme-toggle"
 import { Menu, X, User, Settings, LogOut } from "lucide-react"
 import { useState } from "react"
+import { ModelMindLogo } from "@/components/logo"
 import { useAuth } from "@/hooks/use-auth"
 import { signOut } from "@/lib/auth"
 import {
@@ -15,18 +16,9 @@ import {
   DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu"
-import { getUserInitials, getUserDisplayName } from "@/lib/user-utils"
+import { getUserInitials } from "@/lib/user-utils"
 
 // Skeleton Loader Components
-function AuthButtonsSkeleton() {
-  return (
-    <div className="hidden md:flex items-center gap-3 animate-pulse">
-      <div className="w-14 h-9 rounded-md bg-muted" />
-      <div className="w-20 h-9 rounded-md bg-muted" />
-    </div>
-  )
-}
-
 function UserAvatarSkeleton() {
   return (
     <div className="hidden md:flex items-center gap-3 animate-pulse">
@@ -43,32 +35,6 @@ function MobileAuthSkeleton() {
   )
 }
 
-// Helper function to get user initials
-// function getUserInitials(user: any) {
-//   if (!user) return "US"
-  
-//   const fullName = user.user_metadata?.full_name || user.user_metadata?.name || ""
-//   const email = user.email || ""
-  
-//   if (fullName) {
-//     return fullName
-//       .split(' ')
-//       .map((name: string) => name.charAt(0))
-//       .join('')
-//       .toUpperCase()
-//       .slice(0, 2)
-//   }
-  
-//   if (email) {
-//     return email
-//       .split('@')[0]
-//       .slice(0, 2)
-//       .toUpperCase()
-//   }
-  
-//   return "US"
-// }
-
 // Logout Component
 interface LogoutButtonProps {
   onLogout: () => void
@@ -76,9 +42,7 @@ interface LogoutButtonProps {
 }
 
 function LogoutButton({ onLogout, isLoading = false }: LogoutButtonProps) {
-
   return (
-
     <DropdownMenuItem 
       className="text-destructive focus:text-destructive cursor-pointer flex items-center"
       onClick={onLogout}
@@ -241,30 +205,7 @@ export function Header() {
         <nav className="flex items-center justify-between h-16">
           {/* Logo */}
           <div className="flex items-center gap-10">
-            <Link href="/" className="flex items-center gap-2 group">
-              <div className="w-8 h-8 rounded-lg bg-primary flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
-                <svg
-                  width="20"
-                  height="20"
-                  viewBox="0 0 20 20"
-                  fill="none"
-                  xmlns="http://www.w3.org/2000/svg"
-                  className="text-primary-foreground"
-                >
-                  <path
-                    d="M2 18L8 12L12 16L18 2"
-                    stroke="currentColor"
-                    strokeWidth="2"
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                  />
-                  <circle cx="8" cy="12" r="1.5" fill="currentColor" />
-                  <circle cx="12" cy="16" r="1.5" fill="currentColor" />
-                  <circle cx="18" cy="2" r="1.5" fill="currentColor" />
-                </svg>
-              </div>
-              <span className="text-lg font-semibold text-foreground">RegressLab</span>
-            </Link>
+            <ModelMindLogo />
 
             {/* Desktop Navigation */}
             <div className="hidden md:flex items-center gap-6">
@@ -281,7 +222,7 @@ export function Header() {
                 Models
               </Link>
               <Link
-                href="#docs"
+                href="/docs"
                 className="text-sm font-medium text-muted-foreground hover:text-foreground transition-all duration-200 hover:scale-105"
               >
                 Docs
@@ -363,7 +304,7 @@ export function Header() {
                 Models
               </Link>
               <Link
-                href="#docs"
+                href="/docs"
                 className="text-sm font-medium text-muted-foreground hover:text-foreground transition-colors py-2 animate-slide-in"
                 onClick={() => setMobileMenuOpen(false)}
               >

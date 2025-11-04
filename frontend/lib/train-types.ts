@@ -7,6 +7,8 @@ export interface TrainState {
   randomSeed: number
   crossValidation: boolean
   cvFolds: number
+  modelName?: string | null
+  autoGenerateName: boolean  
 }
 
 export interface TrainingMetrics {

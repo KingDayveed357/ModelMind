@@ -1,15 +1,15 @@
-# 🧪 RegressLab
+# 🧪 ModelMind
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 [![Python](https://img.shields.io/badge/Python-3.11+-blue.svg)](https://python.org)
 [![Next.js](https://img.shields.io/badge/Next.js-14+-black.svg)](https://nextjs.org)
 [![FastAPI](https://img.shields.io/badge/FastAPI-0.115+-green.svg)](https://fastapi.tiangolo.com)
 
-RegressLab is an AI-powered machine learning platform that helps users train, evaluate, and deploy models with ease. It started as a regression-focused system and has now expanded to support a wide range of algorithms — all powered by FastAPI, Next.js, and Supabase.
+ModelMind is an AI-powered machine learning platform that helps users train, evaluate, and deploy models with ease. It started as a regression-focused system and has now expanded to support a wide range of algorithms — all powered by FastAPI, Next.js, and Supabase.
 
 ## 🚀 Overview
 
-RegressLab makes machine learning accessible by simplifying the end-to-end workflow — from data upload to model selection, training, evaluation, and prediction.
+ModelMind makes machine learning accessible by simplifying the end-to-end workflow — from data upload to model selection, training, evaluation, and prediction.
 
 ### Key Features
 
@@ -31,7 +31,7 @@ RegressLab makes machine learning accessible by simplifying the end-to-end workf
 ## 🏗️ Project Structure
 
 ```
-RegressLab/
+ModelMind/
 │
 ├── backend/                    # FastAPI backend application
 │   ├── app/
@@ -187,7 +187,7 @@ SUPABASE_SERVICE_ROLE_KEY=your-supabase-service-key
 SUPABASE_JWKS_URL=https://your-project.supabase.co/auth/v1/keys
 
 # Application Settings
-APP_NAME=RegressLab API
+APP_NAME=ModelMind API
 ENVIRONMENT=development
 SECRET_KEY=your-secret-key-for-jwt-signing
 
@@ -198,7 +198,7 @@ CORS_ORIGINS=["http://localhost:3000"]
 OPENAI_API_KEY=your-openai-api-key
 
 # Database (if using external PostgreSQL)
-DATABASE_URL=postgresql://user:password@localhost:5432/regresslab
+DATABASE_URL=postgresql://user:password@localhost:5432/ModelMind
 ```
 
 ### Frontend Environment (`frontend/.env.local`)
@@ -227,8 +227,8 @@ NEXT_PUBLIC_VERCEL_ANALYTICS_ID=your-analytics-id
 ### 1️⃣ Clone Repository
 
 ```bash
-git clone https://github.com/yourusername/RegressLab.git
-cd RegressLab
+git clone https://github.com/yourusername/ModelMind.git
+cd ModelMind
 ```
 
 ### 2️⃣ Supabase Setup
@@ -236,7 +236,7 @@ cd RegressLab
 1. Create a new Supabase project at [supabase.com](https://supabase.com)
 2. Go to **Settings > API** to get your project URL and anon key
 3. Go to **Settings > API** to get your service role key
-4. Create a storage bucket named `regresslab-data` in **Storage**
+4. Create a storage bucket named `modelmind-data` in **Storage**
 
 ### 3️⃣ Backend Setup
 
@@ -324,7 +324,7 @@ pip install -r requirements.txt
 
 - Verify your `.env` file has correct Supabase credentials
 - Check that your Supabase project is active
-- Ensure the storage bucket `regresslab-data` exists
+- Ensure the storage bucket `modelmind-data` exists
 
 **"Frontend build errors"**
 
@@ -420,8 +420,8 @@ npm run dev
 #### Option 3: Supabase Edge Functions
 
 1. Install Supabase CLI
-2. Create edge function: `supabase functions new regresslab-api`
-3. Deploy: `supabase functions deploy regresslab-api`
+2. Create edge function: `supabase functions new modelmind-api`
+3. Deploy: `supabase functions deploy modelmind-api`
 
 ### Production Environment Variables
 

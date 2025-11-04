@@ -34,10 +34,13 @@ async def upload_dataset(file, user_id: str) -> Dict[str, Any]:
     try:
         # Read file content
         content = await file.read()
+        file_size_bytes = len(content)  # Get actual file size in bytes
 
         # Validate file is not empty
-        if len(content) == 0:
+        if file_size_bytes == 0:
             raise DatasetValidationError("Uploaded file is empty")
+
+        print(f"[Dataset Upload] File size: {file_size_bytes} bytes ({file_size_bytes / 1024:.2f} KB)")
 
         # Parse CSV with error handling
         try:
@@ -69,7 +72,9 @@ async def upload_dataset(file, user_id: str) -> Dict[str, Any]:
 
         # Perform comprehensive dataset analysis
         summary = analyze_dataset(df)
-
+        summary['file_size'] = file_size_bytes
+        summary['file_size_kb'] = round(file_size_bytes / 1024, 2)
+        summary['file_size_mb'] = round(file_size_bytes / (1024 * 1024), 2)
         # Upload to Supabase storage
         filename = f"{user_id}/{file.filename}"
         storage_res = supabase.storage.from_("datasets").upload(filename, content)
@@ -91,7 +96,8 @@ async def upload_dataset(file, user_id: str) -> Dict[str, Any]:
             "rows": len(df),
             "columns": len(df.columns),
             "has_missing": bool(df.isnull().values.any()),
-            "metadata": summary  # Store rich metadata for later use
+            "metadata": summary,
+            "file_size": file_size_bytes,
         }
 
         db_res = supabase.table("datasets").insert(data).execute()

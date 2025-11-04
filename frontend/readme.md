@@ -1,11 +1,11 @@
-# 🧪 RegressLab Frontend
+# 🧪 ModelMind Frontend
 
 [![Next.js](https://img.shields.io/badge/Next.js-14.2+-black.svg)](https://nextjs.org)
 [![React](https://img.shields.io/badge/React-18+-blue.svg)](https://reactjs.org)
 [![TypeScript](https://img.shields.io/badge/TypeScript-5+-blue.svg)](https://typescriptlang.org)
 [![Tailwind CSS](https://img.shields.io/badge/Tailwind-4.1+-blue.svg)](https://tailwindcss.com)
 
-The frontend application for RegressLab - a modern, responsive machine learning dashboard built with Next.js, featuring real-time data visualization, model management, and seamless Supabase integration.
+The frontend application for ModelMind - a modern, responsive machine learning dashboard built with Next.js, featuring real-time data visualization, model management, and seamless Supabase integration.
 
 ## 🚀 Features
 
@@ -146,8 +146,8 @@ NEXT_PUBLIC_DEBUG=false
 
 1. **Clone the repository**
    ```bash
-   git clone https://github.com/yourusername/RegressLab.git
-   cd RegressLab/frontend
+   git clone https://github.com/yourusername/ModelMind.git
+   cd ModelMind/frontend
    ```
 
 2. **Install dependencies**

@@ -1,10 +1,10 @@
-# 🧪 RegressLab Backend API
+# 🧪 ModelMind Backend API
 
 [![Python](https://img.shields.io/badge/Python-3.11+-blue.svg)](https://python.org)
 [![FastAPI](https://img.shields.io/badge/FastAPI-0.115+-green.svg)](https://fastapi.tiangolo.com)
 [![Supabase](https://img.shields.io/badge/Supabase-2.5.1-orange.svg)](https://supabase.com)
 
-The backend API for RegressLab - a high-performance machine learning platform built with FastAPI, featuring automated model selection, training, and prediction capabilities.
+The backend API for ModelMind - a high-performance machine learning platform built with FastAPI, featuring automated model selection, training, and prediction capabilities.
 
 ## 🚀 Features
 
@@ -102,7 +102,7 @@ SUPABASE_SERVICE_ROLE_KEY=your-supabase-service-key
 SUPABASE_JWKS_URL=https://your-project.supabase.co/auth/v1/keys
 
 # Application Settings
-APP_NAME=RegressLab API
+APP_NAME=ModelMind API
 ENVIRONMENT=development
 SECRET_KEY=your-secret-key-for-jwt-signing
 
@@ -113,7 +113,7 @@ CORS_ORIGINS=["http://localhost:3000"]
 OPENAI_API_KEY=your-openai-api-key
 
 # Database (if using external PostgreSQL)
-DATABASE_URL=postgresql://user:password@localhost:5432/regresslab
+DATABASE_URL=postgresql://user:password@localhost:5432/modelMind
 ```
 
 ## 🚀 Quick Start
@@ -129,8 +129,8 @@ DATABASE_URL=postgresql://user:password@localhost:5432/regresslab
 1. **Clone the repository**
 
    ```bash
-   git clone https://github.com/yourusername/RegressLab.git
-   cd RegressLab/backend
+   git clone https://github.com/yourusername/ModelMind.git
+   cd ModelMind/backend
    ```
 
 2. **Create virtual environment**

@@ -3,7 +3,7 @@ import type { Metadata } from "next"
 import { Inter, Instrument_Serif, JetBrains_Mono } from "next/font/google"
 import "./globals.css"
 import { ThemeProvider } from "@/components/theme-provider"
-import { Toaster } from '@/components/ui/sonner'
+import { Toaster } from "@/components/ui/sonner"
 
 const inter = Inter({
   subsets: ["latin"],
@@ -28,10 +28,10 @@ const jetbrainsMono = JetBrains_Mono({
 })
 
 export const metadata: Metadata = {
-  title: "RegressLab - AI-Powered Regression Analysis",
+  title: "ModelMind – Build, Train & Visualize Intelligent Models",
   description:
-    "Transform your data into insights with sophisticated regression analysis. Upload, train, and predict with multiple ML models in a beautiful interface.",
-    generator: 'v0.app'
+    "ModelMind helps you transform raw data into intelligent predictions. Build machine learning models, visualize insights, and automate workflows — all from one AI-powered dashboard.",
+  generator: "v0.app",
 }
 
 export default function RootLayout({
@@ -46,7 +46,7 @@ export default function RootLayout({
       suppressHydrationWarning
     >
       <body className="font-sans antialiased">
-        <ThemeProvider defaultTheme="light" storageKey="regresslab-theme">
+        <ThemeProvider defaultTheme="light" storageKey="modelmind-theme">
           {children}
           <Toaster />
         </ThemeProvider>

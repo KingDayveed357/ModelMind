@@ -13,9 +13,9 @@ import { redirect } from "next/navigation"
 export default function SettingsPage() {
   const { user, loading } = useAuth()
 
-  if (!loading && !user) {
-    redirect('/login')
-  }
+  // if (!loading && !user) {
+  //   redirect('/')
+  // }
 
   return (
     <DashboardLayout>

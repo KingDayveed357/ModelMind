@@ -123,7 +123,16 @@
   }
   body {
     @apply bg-background text-foreground antialiased;
-    /* Removed panel background pattern for cleaner matte look */
+    transition: background-color 0.3s cubic-bezier(0.4, 0, 0.2, 1), color 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  button,
+  a,
+  input,
+  select,
+  textarea {
+    transition: background-color 0.2s ease-out, color 0.2s ease-out, border-color 0.2s ease-out, box-shadow 0.2s
+      ease-out;
   }
 
   .dark body {
@@ -165,21 +174,50 @@
   text-wrap: pretty;
 }
 
-/* Matte panel utilities */
+/* Enhanced matte panels with better contrast in both light and dark modes */
 .matte-panel {
   background: hsl(var(--card));
   border: 1px solid hsl(var(--border));
   box-shadow: 0 2px 8px -2px hsl(var(--foreground) / 0.08);
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.matte-panel:hover {
+  box-shadow: 0 4px 12px -2px hsl(var(--foreground) / 0.12);
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.dark .matte-panel {
+  background: hsl(var(--card));
+  border: 1px solid hsl(var(--border) / 0.6);
+  box-shadow: 0 2px 8px -2px hsl(0 0% 0% / 0.3);
+}
+
+.dark .matte-panel:hover {
+  background: hsl(var(--card) / 1.05);
+  box-shadow: 0 4px 12px -2px hsl(0 0% 0% / 0.4);
 }
 
 .matte-panel-elevated {
   background: hsl(var(--card));
   border: 1px solid hsl(var(--border));
   box-shadow: 0 4px 16px -4px hsl(var(--foreground) / 0.12), 0 0 0 1px hsl(var(--border) / 0.5);
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.dark .matte-panel-elevated {
+  background: hsl(var(--card));
+  border: 1px solid hsl(var(--border) / 0.6);
+  box-shadow: 0 4px 16px -4px hsl(0 0% 0% / 0.4), 0 0 0 1px hsl(var(--border) / 0.3);
 }
 
 .matte-section {
   background: hsl(var(--muted) / 0.3);
+  transition: background-color 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.dark .matte-section {
+  background: hsl(var(--muted) / 0.2);
 }
 
 /* Neon accent glow utility */
@@ -210,25 +248,43 @@
 /* Added CSS grid background pattern for hero section */
 .hero-grid-bg {
   position: relative;
-  background: hsl(var(--background));
+  /* Base background gradient (Tailwind: bg-gradient-to-br from-primary/10 via-accent/5 to-background) */
+  background: linear-gradient(
+    to bottom right,
+    hsl(var(--primary) / 0.10),
+    hsl(var(--accent) / 0.05),
+    hsl(var(--background))
+  );
+  transition: all 0.5s ease; /* Tailwind: transition-all duration-500 */
+  overflow: hidden;
 }
 
+/* Hover gradient (Tailwind: hover:from-primary/15 hover:via-accent/10) */
+.hero-grid-bg:hover {
+  background: linear-gradient(
+    to bottom right,
+    hsl(var(--primary) / 0.15),
+    hsl(var(--accent) / 0.10),
+    hsl(var(--background))
+  );
+}
+
+/* Grid overlay layer */
 .hero-grid-bg::before {
   content: "";
   position: absolute;
   inset: 0;
-  /* More visible grid lines - 24px apart */
   background-image: linear-gradient(to right, hsl(var(--foreground) / 0.12) 1px, transparent 1px),
     linear-gradient(to bottom, hsl(var(--foreground) / 0.12) 1px, transparent 1px);
   background-size: 24px 24px;
   z-index: 0;
 }
 
+/* Depth gradient overlay */
 .hero-grid-bg::after {
   content: "";
   position: absolute;
   inset: 0;
-  /* Gradient overlay for depth */
   background: linear-gradient(
     to bottom,
     hsl(var(--background) / 0.8) 0%,
@@ -238,18 +294,135 @@
   z-index: 1;
 }
 
+/* Dark mode tweaks */
 .dark .hero-grid-bg::before {
-  /* More visible white lines in dark mode */
   background-image: linear-gradient(to right, hsl(0 0% 100% / 0.08) 1px, transparent 1px),
     linear-gradient(to bottom, hsl(0 0% 100% / 0.08) 1px, transparent 1px);
 }
 
 .dark .hero-grid-bg::after {
-  /* Darker gradient overlay in dark mode */
   background: linear-gradient(
     to bottom,
     hsl(var(--background) / 0.7) 0%,
     hsl(var(--background) / 0.9) 50%,
     hsl(var(--background)) 100%
   );
+}
+
+
+/* Enhanced animation keyframes for smooth fade-up and slide effects */
+@keyframes fade-up-hero {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fade-in-smooth {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes slide-in-smooth {
+  from {
+    opacity: 0;
+    transform: translateX(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+/* Add delayed animation variants for staggered entrance effects */
+@keyframes fade-in-delayed-100 {
+  0% {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes fade-in-delayed-300 {
+  0% {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fade-in-delayed-500 {
+  0% {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes slide-in-delayed-700 {
+  0% {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-fade-up-hero {
+  animation: fade-up-hero 0.8s ease-out 0.2s both;
+}
+
+.animate-fade-in {
+  animation: fade-in-smooth 0.6s ease-out 0.3s both;
+}
+
+.animate-slide-up {
+  animation: fade-up-hero 0.8s ease-out both;
+}
+
+.animate-slide-in {
+  animation: slide-in-smooth 0.6s ease-out 0.4s both;
+}
+
+.animate-fade-in-delayed-100 {
+  animation: fade-in-delayed-100 0.5s ease-out 0.1s both;
+}
+
+.animate-fade-up-hero-delayed-300 {
+  animation: fade-in-delayed-300 0.8s ease-out 0.3s both;
+}
+
+.animate-fade-in-delayed-500 {
+  animation: fade-in-delayed-500 0.6s ease-out 0.5s both;
+}
+
+.animate-fade-in-delayed-700 {
+  animation: fade-in-delayed-100 0.5s ease-out 0.7s both;
+}
+
+.animate-fade-in-delayed-800 {
+  animation: fade-in-delayed-100 0.5s ease-out 0.8s both;
+}
+
+.animate-fade-in-delayed-900 {
+  animation: fade-in-delayed-100 0.5s ease-out 0.9s both;
+}
+
+.animate-slide-in-delayed-700 {
+  animation: slide-in-delayed-700 0.6s ease-out 0.7s both;
 }

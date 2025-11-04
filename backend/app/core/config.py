@@ -8,7 +8,7 @@ from pydantic_settings import BaseSettings
 class Settings(BaseSettings):
     app_name: str = "RegressLab API"
     environment: str = Field(default="development")
-    cors_origins: List[str] = Field(default_factory=lambda: ["http://localhost:3000"])
+    cors_origins: List[str] = Field(default_factory=lambda: ["http://localhost:3000", "https://model-mind-ai.vercel.app/"])
 
     # Database & Supabase
     database_url: Optional[str] = None

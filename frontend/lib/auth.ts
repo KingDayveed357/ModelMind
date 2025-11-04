@@ -14,6 +14,7 @@ export async function signUp(email: string, password: string, fullName: string) 
       emailRedirectTo: `${window.location.origin}/auth/callback`,
     },
   })
+  console.log("Signup response:", data, error)
 
   if (error) throw error
   return data

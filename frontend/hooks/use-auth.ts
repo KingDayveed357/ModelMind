@@ -1,4 +1,4 @@
-// hooks/use-auth.ts - COMPLETE VERSION
+// hooks/use-auth.ts 
 import { useEffect, useState } from 'react'
 import { User, Session } from '@supabase/supabase-js'
 import { createClient } from '@/lib/supabase'
@@ -42,10 +42,17 @@ export function useAuth(): UseAuthReturn {
       }
     })
 
-    return () => {
-      mounted = false
-      subscription.unsubscribe()
-    }
+   const handleManualSignout = () => {
+    setUser(null)
+    setSession(null)
+  }
+  window.addEventListener("supabase-signout", handleManualSignout)
+
+  return () => {
+    mounted = false
+    subscription.unsubscribe()
+    window.removeEventListener("supabase-signout", handleManualSignout)
+  }
   }, [supabase])
 
   const getAccessToken = async (): Promise<string | null> => {

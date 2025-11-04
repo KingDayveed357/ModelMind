@@ -1,3 +1,4 @@
+// app/sign-up/page.tsx
 "use client"
 
 import type React from "react"
@@ -45,6 +46,7 @@ export default function SignUpPage() {
     setError(null)
     try {
       await signInWithGoogle()
+      router.push("/dashboard")
     } catch (err: any) {
       setError(err.message || "Failed to sign in with Google")
     }

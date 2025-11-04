@@ -37,7 +37,8 @@ export async function signInWithGoogle() {
   const { data, error } = await supabase.auth.signInWithOAuth({
     provider: 'google',
     options: {
-      redirectTo: `${window.location.origin}/auth/callback`,
+      // redirectTo: `${window.location.origin}/auth/callback`,
+      redirectTo: `${process.env.NEXT_PUBLIC_SUPABASE_URL}/auth/v1/callback`,
     },
   })
 
@@ -64,6 +65,14 @@ export async function signOut() {
   
   const { error } = await supabase.auth.signOut()
   if (error) throw error
+
+  localStorage.removeItem('supabase.auth.token')
+  sessionStorage.removeItem('supabase.auth.token')
+
+
+  if (typeof window !== "undefined") {
+    window.dispatchEvent(new Event("supabase-signout"))
+  }
 }
 
 export async function resetPassword(email: string) {
@@ -86,4 +95,16 @@ export async function updatePassword(newPassword: string) {
 
   if (error) throw error
   return data
+}
+
+export async function deleteAccount() {
+  const { apiRequest } = await import('./api-client')
+  
+  return await apiRequest<{
+    message: string
+    user_id: string
+    deleted_at: string
+  }>('/users/delete-account', {
+    method: 'DELETE',
+  })
 }

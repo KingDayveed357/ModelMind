@@ -1,7 +1,7 @@
 # app/api/routes/train.py
 from fastapi import APIRouter, Depends, HTTPException, status, Query
 from app.api.deps import get_current_user_id
-from app.services.training_service import train_model, ModelTrainingError, analyze_target_column
+from app.services.training_service import train_model, ModelTrainingError, analyze_target_column, check_model_name_exists
 from app.services.data_preprocessing import DataPreprocessingError
 from app.services.dataset_service import list_user_datasets
 from app.db.supabase_client import supabase
@@ -49,8 +49,23 @@ async def analyze_target(
         )
 
 
+@router.get("/check-name")
+async def check_model_name(
+        name: str = Query(..., description="Model name to check"),
+        user_id: str = Depends(get_current_user_id),
+):
+    """
+    Check if a model name already exists for the user.
+    """
+    exists = await check_model_name_exists(user_id, name)
+    return {
+        "exists": exists,
+        "message": f"Model name '{name}' is {'already taken' if exists else 'available'}"
+    }
+
 
 @router.post("/{dataset_id}")
+
 async def train_user_dataset(
         dataset_id: str,
         target_col: str = Query(..., description="Target column name"),
@@ -61,6 +76,8 @@ async def train_user_dataset(
         polynomial_degree: int = Query(2, ge=2, le=5, description="Polynomial degree"),
         use_target_encoder: bool = Query(False, description="Use target encoding"),
         user_id: str = Depends(get_current_user_id),
+        model_name: str = Query(None, description="Input Model name"),
+        auto_generate_name: bool = Query(False, description="Auto-generate unique model name"),
 ):
     """
     Train a model on a given dataset.
@@ -75,6 +92,8 @@ async def train_user_dataset(
         use_polynomial (bool): Whether to use polynomial features
         polynomial_degree (int): Degree of polynomial expansion
         use_target_encoder (bool): Use target encoding for high-cardinality categoricals
+        model_name (str): Custom model name
+        auto_generate_name (bool): Auto-generate unique model name
     """
     try:
         # Verify dataset exists and belongs to user
@@ -92,6 +111,15 @@ async def train_user_dataset(
                 detail="Dataset not found or does not belong to user"
             )
 
+        # Check for duplicate model name (only if custom name provided and not auto-generating)
+        if model_name and not auto_generate_name:
+            name_exists = await check_model_name_exists(user_id, model_name)
+            if name_exists:
+                raise HTTPException(
+                    status_code=status.HTTP_409_CONFLICT,
+                    detail=f"A model with the name '{model_name}' already exists. Please choose a different name or enable auto-generation."
+                )
+
         # Trigger model training pipeline
         result = await train_model(
             dataset_id=dataset_id,
@@ -103,6 +131,8 @@ async def train_user_dataset(
             use_polynomial=use_polynomial,
             polynomial_degree=polynomial_degree,
             use_target_encoder=use_target_encoder,
+            user_input_name=model_name,
+            auto_generate_name=auto_generate_name
         )
 
         return {

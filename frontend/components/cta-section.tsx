@@ -10,16 +10,16 @@ export function CTASection() {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="max-w-3xl mx-auto text-center flex flex-col items-center gap-6 md:gap-8 p-8 md:p-12 rounded-2xl matte-panel-elevated animate-slide-up">
           <h2 className="text-3xl sm:text-4xl md:text-5xl font-serif font-normal text-balance">
-            Ready to unlock your data's potential?
+            Ready to build your first model?
           </h2>
           <p className="text-base md:text-lg text-muted-foreground text-pretty max-w-2xl">
-            Join data scientists and analysts who trust RegressLab for sophisticated regression analysis. Start
-            analyzing your data in minutes.
+            Upload a dataset and train regression or classification models. Get predictions, visualize metrics, and
+            deploy in minutes.
           </p>
           <div className="flex flex-col sm:flex-row items-center gap-3 md:gap-4 mt-2 md:mt-4 w-full sm:w-auto">
             <Button size="lg" className="gap-2 w-full sm:w-auto animate-slide-in neon-accent" asChild>
-              <Link href="/sign-up">
-                Get started free
+              <Link href="/dashboard/upload">
+                Upload a Dataset
                 <ArrowRight className="w-4 h-4" />
               </Link>
             </Button>
@@ -29,7 +29,7 @@ export function CTASection() {
               className="w-full sm:w-auto animate-slide-in matte-panel bg-transparent"
               asChild
             >
-              <Link href="#contact">Talk to sales</Link>
+              <Link href="/docs#getting-started">See Quickstart</Link>
             </Button>
           </div>
           <p className="text-xs sm:text-sm text-muted-foreground">

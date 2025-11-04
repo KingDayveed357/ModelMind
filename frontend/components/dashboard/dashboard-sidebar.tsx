@@ -41,6 +41,7 @@ import { signOut } from "@/lib/auth"
 import { getUserDisplayName, getUserInitials } from "@/lib/user-utils"
 import { Skeleton } from "@/components/ui/skeleton"
 import { useCallback, useMemo, useState } from "react"
+import { ModelMindLogo } from "@/components/logo"
 
 interface DashboardSidebarProps {
   open: boolean
@@ -66,10 +67,10 @@ export function DashboardSidebar({
       { name: "Dashboard", href: "/dashboard", icon: LayoutDashboard },
       { name: "Upload Data", href: "/dashboard/upload", icon: Upload },
       { name: "Train Model", href: "/dashboard/train", icon: Brain },
-      { name: "Visualizations", href: "/dashboard/visualizations", icon: LineChart },
-      { name: "Predictions", href: "/dashboard/predictions", icon: TrendingUp },
+      // { name: "Visualizations", href: "/dashboard/visualizations", icon: LineChart },
+      { name: "Predictions", href: "/dashboard/predict", icon: TrendingUp },
       { name: "History", href: "/dashboard/history", icon: History },
-      { name: "AI Assistant", href: "/dashboard/assistant", icon: MessageSquare },
+      { name: "AI Assistant", href: "/coming-soon", icon: MessageSquare },
     ],
     []
   )
@@ -78,7 +79,7 @@ export function DashboardSidebar({
     try {
       setIsLoggingOut(true)
       await signOut()
-      router.push("/sign-in")
+      router.push("/")
     } catch (err) {
       console.error("Logout error:", err)
     } finally {
@@ -100,7 +101,7 @@ export function DashboardSidebar({
       )}
       aria-label="RegressLab Home"
     >
-      <div className="w-8 h-8 rounded-lg bg-primary flex items-center justify-center">
+      {/* <div className="w-8 h-8 rounded-lg bg-primary flex items-center justify-center">
         <svg
           width="20"
           height="20"
@@ -120,8 +121,9 @@ export function DashboardSidebar({
           <circle cx="12" cy="16" r="1.5" fill="currentColor" />
           <circle cx="18" cy="2" r="1.5" fill="currentColor" />
         </svg>
-      </div>
-      {!collapsed && <span className="font-semibold">RegressLab</span>}
+      </div> */}
+      
+      {!collapsed && <span className="font-semibold"><ModelMindLogo /></span>}
     </Link>
   )
 

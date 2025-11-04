@@ -1,31 +1,44 @@
 "use client"
 
 import { Upload, Settings, TrendingUp, Download } from "lucide-react"
+import Link from "next/link"
+import { Button } from "@/components/ui/button"
 
 const steps = [
   {
     number: "01",
     icon: Upload,
-    title: "Upload Your Data",
-    description: "Import CSV files with your dataset. Our system validates and previews your data instantly.",
+    title: "Sign In & Upload Dataset",
+    description: "Authenticate with Supabase, then import CSV files. Our system validates and previews data instantly.",
+    cta: true,
+    ctaText: "Start now",
+    ctaLink: "/dashboard/upload",
   },
   {
     number: "02",
     icon: Settings,
-    title: "Configure & Train",
-    description: "Select from Linear, Multiple, Polynomial, or SVR models. Adjust parameters and start training.",
+    title: "Auto or Manual Model Selection",
+    description:
+      "We detect regression vs classification and suggest strong baselines. Manually select models and tune hyperparameters.",
+    cta: true,
+    ctaText: "Start now",
+    ctaLink: "/dashboard/train",
   },
   {
     number: "03",
     icon: TrendingUp,
-    title: "Analyze Results",
-    description: "View interactive visualizations, performance metrics, and predictions with detailed insights.",
+    title: "Train & Evaluate",
+    description:
+      "Scikit-learn and FLAML power training. R², RMSE, MAE for regression. Accuracy, F1, ROC/AUC, and Confusion Matrix for classification.",
+    cta: false,
   },
   {
     number: "04",
     icon: Download,
-    title: "Export & Share",
-    description: "Download your trained models, results, and reports. Share insights with your team.",
+    title: "Deploy & Predict",
+    description:
+      "Persist your models and hit a single prediction endpoint. Export results as JSON and share insights with your team.",
+    cta: false,
   },
 ]
 
@@ -39,10 +52,10 @@ export function HowItWorks() {
             <span className="text-xs font-medium text-primary">How It Works</span>
           </div>
           <h2 className="text-3xl sm:text-4xl md:text-5xl font-serif font-normal text-balance animate-slide-up">
-            Four simple steps to insights
+            From data to deployment in minutes
           </h2>
           <p className="text-base sm:text-lg text-muted-foreground text-pretty animate-fade-in">
-            From data upload to actionable predictions in minutes, not hours.
+            Typical workflow for regression and classification tasks.
           </p>
         </div>
 
@@ -67,6 +80,11 @@ export function HowItWorks() {
                   <div className="text-xs font-mono text-muted-foreground">{step.number}</div>
                   <h3 className="text-base sm:text-lg font-semibold">{step.title}</h3>
                   <p className="text-xs sm:text-sm text-muted-foreground leading-relaxed">{step.description}</p>
+                  {step.cta && (
+                    <Button size="sm" variant="ghost" className="mt-2" asChild>
+                      <Link href={step.ctaLink}>{step.ctaText}</Link>
+                    </Button>
+                  )}
                 </div>
               </div>
             </div>

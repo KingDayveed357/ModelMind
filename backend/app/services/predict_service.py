@@ -36,9 +36,19 @@ class ModelStore:
             return self._cache[model_id]
 
         try:
+            print(f"[ModelStore] Loading model {model_id}")
+            print(f"[ModelStore] Model URL: {model_url}")
             # Extract file path from URL
-            file_path = model_url.split('/')[-2:]
-            file_path = '/'.join(file_path)
+
+            if 'supabase.co/storage/v1/object/public/models/' in model_url:
+                # Your URL structure: https://xxx.supabase.co/storage/v1/object/public/models/user_id/models/model_dataset_id.pkl
+                # We need to extract: user_id/models/model_dataset_id.pkl
+                file_path = model_url.split('public/models/')[-1]
+            else:
+                # If it's already a relative path, use it directly
+                file_path = model_url
+
+            print(f"[ModelStore] Extracted file path: {file_path}")
 
             # Download from Supabase storage
             model_bytes = supabase.storage.from_('models').download(file_path)
@@ -239,7 +249,7 @@ async def predict(
         model_data = model_info.data[0]
 
         # Check model status
-        if model_data.get('status') not in ['trained', 'evaluated']:
+        if model_data.get('status') not in ['trained', 'completed']:
             raise PredictionError(f"Model not ready for predictions. Status: {model_data.get('status')}")
 
         # Load model
@@ -304,7 +314,7 @@ async def predict_from_file(
     """
     try:
         # Read CSV file
-        content = file.read()
+        content = await file.read()
         df = pd.read_csv(io.BytesIO(content))
 
         if df.empty:

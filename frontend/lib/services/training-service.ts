@@ -49,6 +49,8 @@ export interface TrainingRequest {
   use_polynomial?: boolean
   polynomial_degree?: number
   use_target_encoder?: boolean
+  model_name?: string
+  auto_generate_name?: boolean
 }
 
 export interface TrainingResponse {
@@ -56,6 +58,8 @@ export interface TrainingResponse {
   message: string
   data: {
     id: string
+    model_name: string
+    model_type: string  // Added: The actual model type used
     training_time: number
     metrics: {
       r2_score?: number
@@ -73,6 +77,12 @@ export interface TrainingResponse {
       test_samples: number
       n_processed_features: number
     }
+    // Optional auto-selection metadata
+    auto_selection_info?: {
+      evaluated_models: string[]
+      selection_reason: string
+      comparison_metrics: Record<string, any>
+    }
   }
 }
 
@@ -88,6 +98,13 @@ export const trainingService = {
       `/train/${datasetId}/analyze-target?target_col=${encodeURIComponent(targetColumn)}`,
       { method: 'GET' }
     ).then(res => res.data)
+  },
+
+  async checkModelName(modelName: string): Promise<{ exists: boolean; message: string }> {
+    return apiRequest<{ exists: boolean; message: string }>(
+      `/train/check-name?name=${encodeURIComponent(modelName)}`,
+      { method: 'GET' }
+    )
   },
   
   async trainModel(request: TrainingRequest): Promise<TrainingResponse> {

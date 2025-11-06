@@ -3,6 +3,7 @@
 import Link from "next/link"
 import { ChevronRight } from "lucide-react"
 import { useState } from "react"
+import { FeedbackWidget } from "@/components/coming-soon/feedback-widget"
 
 const tableOfContents = [
   { id: "getting-started", label: "Getting Started" },
@@ -484,6 +485,7 @@ max_depth: 10          # For tree-based models`}
           </div>
         </div>
       </div>
+      <FeedbackWidget />
     </div>
   )
 }

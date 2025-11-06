@@ -1,4 +1,3 @@
-# main.py
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi import FastAPI
 
@@ -10,12 +9,17 @@ from app.api.routes import history as history_routes
 from app.api.routes import models as models_routes
 from app.api.routes import users as users_routes
 from app.api.routes import test_supabase
+from app.api.routes import coming_soon  # NEW
 from app.core.cors import get_cors_kwargs
 from app.api.errors import register_exception_handlers
 
 
 def create_app() -> FastAPI:
-    app = FastAPI(title="ModelMind API", version="0.1.0")
+    app = FastAPI(
+        title="ModelMind API",
+        version="0.1.0",
+        description="AI-powered analytics platform with intelligent dashboard assistant"
+    )
 
     # CORS
     app.add_middleware(CORSMiddleware, **get_cors_kwargs())
@@ -28,6 +32,7 @@ def create_app() -> FastAPI:
     app.include_router(models_routes.router, prefix="/api", tags=["models"])
     app.include_router(users_routes.router, prefix="/api", tags=["users"])
     app.include_router(test_supabase.router, prefix="/api/test", tags=["test"])
+    app.include_router(coming_soon.router, prefix="/api/coming-soon", tags=["coming-soon"])  # NEW
 
     # Exceptions
     register_exception_handlers(app)

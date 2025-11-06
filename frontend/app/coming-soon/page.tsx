@@ -1,6 +1,7 @@
 import type { Metadata } from "next"
 import { ComingSoonHero } from "@/components/coming-soon/hero-section"
 import { ComingSoonFooter } from "@/components/coming-soon/footer-section"
+import { FeedbackWidget } from "@/components/coming-soon/feedback-widget"
 
 export const metadata: Metadata = {
   title: "Dashboard AI Assistant - Coming Soon | ModelMind",
@@ -13,6 +14,7 @@ export default function ComingSoonPage() {
     <div className="min-h-screen bg-background text-foreground">
       <ComingSoonHero />
       <ComingSoonFooter />
+      <FeedbackWidget />
     </div>
   )
 }

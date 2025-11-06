@@ -8,7 +8,9 @@ click==8.3.0
 colorama==0.4.6
 cryptography==46.0.2
 deprecation==2.1.0
+dnspython==2.8.0
 ecdsa==0.19.1
+email-validator==2.3.0
 fastapi==0.119.0
 FLAML==2.3.6
 gotrue==2.12.4
@@ -45,9 +47,11 @@ pytz==2025.2
 PyYAML==6.0.3
 realtime==1.0.6
 requests==2.32.5
+resend==2.19.0
 rsa==4.9.1
 scikit-learn==1.7.2
 scipy==1.16.2
+sib-api-v3-sdk==7.6.0
 six==1.17.0
 sniffio==1.3.1
 SQLAlchemy==2.0.44

@@ -19,9 +19,13 @@ class Settings(BaseSettings):
 
     # Other integrations
     openai_api_key: Optional[str] = None
+    resend_api_key: Optional[str] = None
+    brevo_api_key: Optional[str] = None
+    brevo_sender_email: Optional[str] = None
 
     class Config:
         env_file = ".env"
+        extra = "ignore"
 
 
 @lru_cache

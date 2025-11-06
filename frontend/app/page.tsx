@@ -6,6 +6,7 @@ import { FeaturesGrid } from "@/components/features-grid"
 import { ModelsShowcase } from "@/components/models-showcase"
 import { CTASection } from "@/components/cta-section"
 import { Footer } from "@/components/footer"
+import { FeedbackWidget } from "@/components/coming-soon/feedback-widget"
 
 export default function LandingPage() {
   return (
@@ -17,6 +18,7 @@ export default function LandingPage() {
         <FeaturesGrid />
         <ModelsShowcase />
         <CTASection />
+        <FeedbackWidget />
       </main>
       <Footer />
     </div>

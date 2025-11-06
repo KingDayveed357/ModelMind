@@ -99,7 +99,7 @@ export default function SignInPage() {
               </div>
               <div className="flex flex-col gap-2">
                 <h1 className="text-2xl font-semibold text-foreground">Welcome back</h1>
-                <p className="text-sm text-muted-foreground">Sign in to your RegressLab account</p>
+                <p className="text-sm text-muted-foreground">Sign in to your ModelMind account</p>
               </div>
             </div>
 

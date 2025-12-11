@@ -1,4 +1,4 @@
-<<<<<<< HEAD
+# <<<<<<< HEAD
 from datetime import datetime, timezone
 from typing import Optional, Literal
 import logging
@@ -6,16 +6,16 @@ import asyncio
 
 from fastapi import APIRouter, HTTPException, BackgroundTasks
 from pydantic import BaseModel, EmailStr, Field
-=======
-# backend/app/api/routes/coming_soon.py
-from datetime import datetime
-from typing import Optional, Literal
-import logging
+# =======
+# # backend/app/api/routes/coming_soon.py
+# from datetime import datetime
+# from typing import Optional, Literal
+# import logging
 
-from fastapi import APIRouter, HTTPException, BackgroundTasks
-from pydantic import BaseModel, EmailStr, Field
+# from fastapi import APIRouter, HTTPException, BackgroundTasks
+# from pydantic import BaseModel, EmailStr, Field
 
->>>>>>> 3325e33e7e72bc3ae708a599bb2e3b6e4da91e07
+# >>>>>>> 3325e33e7e72bc3ae708a599bb2e3b6e4da91e07
 from app.db.supabase_client import supabase
 from app.services.email_service import EmailService
 

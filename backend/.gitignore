@@ -1,16 +1,14 @@
 # Environment files
-.env
+# .env
 .env.local
 .env.production
 .env.development
-<<<<<<< HEAD
-# .env.test
-=======
+
 .env.test
->>>>>>> 3325e33e7e72bc3ae708a599bb2e3b6e4da91e07
+
 
 # Python
-__pycache__/
+__pycache__/*
 *.py[cod]
 *$py.class
 *.so
